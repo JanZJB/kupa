@@ -24,10 +24,17 @@ public class TutorialApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		try {
+			userResourceV1.fetchUsers(null);
+		}
+		catch (Exception e){
+			System.out.println(e);
+		}
+
 		List<User> users = userResourceV1.fetchUsers(null);
 		assertThat(users).hasSize(1);
 
-		User joeUser = new User(null, "joe", "jones",
+		User joeUser = new User(null, "Joe", "Jones",
 				User.Gender.MALE, 22, "joe.jones@gmail.com");
 
 		assertThat(users.get(0)).isEqualToIgnoringGivenFields(joeUser, "userId");
